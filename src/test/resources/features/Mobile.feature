@@ -94,13 +94,36 @@ Feature: Mobile - Orbi
       | username    | password | Name           | Email                | Age         | message                       |
       | admin       | password | francisco      | francisco@gmail.com  | fsghsj      | Please enter a valid number   |
 
-  @mobile @androidLocal @Mobile
+  #@mobile @androidLocal @Mobile
   Scenario Outline: Add new user Successful
     Given Open mobile application - Orbi
     When Capture credentials "<username>" "<password>" and click on the Login button
+    Then Title is displayed - Users List
     And Click New User
     And Add new user "<Name>" "<Email>" "<Age>" - New User
-
+    Then Title is displayed - Users List
+    And Select record "<Name>" - Users List
+    Then Validate user registration data "<Name>" "<Name>" "<Name>" - New User
     Examples:
       | username    | password | Name           | Email                | Age         |
-      | admin       | password | francisco      | francisco@gmail.com  | 33          |
+      | admin       | password | jose mendez    | jm@gmail.com         | 29          |
+
+
+  @mobile @androidLocal @Mobile
+  Scenario Outline: Update User Successful
+    Given Open mobile application - Orbi
+    When Capture credentials "<username>" "<password>" and click on the Login button
+    Then Title is displayed - Users List
+    And Click New User
+    And Add new user "<Name>" "<Email>" "<Age>" - New User
+    Then Title is displayed - Users List
+    And Select record "<Name>" - Users List
+    Then Validate user registration data "<Name>" "<Email>" "<Age>" - New User
+    When Update User "<Name>" "<Email>" "<Age>" "<NameUpdate>" "<EmailUpdate>" "<AgeUpdate>" - User Details
+    Then Title is displayed - Users List
+    And Select record "<NameUpdate>" - Users List
+    Then Validate user registration data "<NameUpdate>" "<EmailUpdate>" "<AgeUpdate>" - New User
+
+    Examples:
+      | username | password | Name           | Email          | Age  |  NameUpdate    | EmailUpdate          | AgeUpdate |
+      | admin    | password | jose oca      | jo@gmail.com    | 29   |  updatename    | update@gmail.com     | 33        |

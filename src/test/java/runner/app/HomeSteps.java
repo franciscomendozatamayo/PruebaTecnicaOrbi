@@ -20,4 +20,9 @@ public class HomeSteps {
     public void Click_New_User(){
         homeActivity.clickBtnAddRecord();
     }
+
+    @And("Select record {string} - Users List")
+    public void Select_record_Users_List(String Name) throws InterruptedException {
+        homeActivity.getAllContentDescAttributes(Name);
+    }
 }

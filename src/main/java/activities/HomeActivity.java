@@ -28,5 +28,8 @@ public class HomeActivity {
         ActivityHelper.clickElement(Driver.appiumDriver, btnAddRecord);
     }
 
+    public void getAllContentDescAttributes(String name){
+        ActivityHelper.clickOnElementByContentDesc(Driver.appiumDriver, name);
+    }
 
 }

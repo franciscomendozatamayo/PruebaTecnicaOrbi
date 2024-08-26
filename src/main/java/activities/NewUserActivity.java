@@ -33,6 +33,10 @@ public class NewUserActivity {
     @FindBy(xpath = "//android.view.View[@content-desc=\"Please enter a valid number\"]\n")
     WebElement messageValidAge;
 
+    @FindBy(xpath = "//android.widget.Button[@content-desc=\"Save Changes\"]")
+    WebElement btnSaveChanges;
+
+
     public void captureNewUser(String Name, String Email, String Age){
         ActivityHelper.clickElement(Driver.appiumDriver, inputName);
         ActivityHelper.sendKeysElement(Driver.appiumDriver, inputName, Name);
@@ -66,6 +70,21 @@ public class NewUserActivity {
     public String getMessageValidAge(){
         String text = ActivityHelper.getAttribute(Driver.appiumDriver, messageValidAge);
         return text;
+    }
+
+    public boolean getTextElementByText(String text){
+       boolean status = ActivityHelper.isElementPresentByText(Driver.appiumDriver, text);
+       return status;
+    }
+
+    public void updateUser(String Name, String Email, String Age, String NameUpdate, String EmailUpdate, String AgeUpdate){
+        ActivityHelper.clickOnElementByText(Driver.appiumDriver, Name);
+        ActivityHelper.sendKeysToElementByText(Driver.appiumDriver, Name, NameUpdate);
+        ActivityHelper.clickOnElementByText(Driver.appiumDriver, Email);
+        ActivityHelper.sendKeysToElementByText(Driver.appiumDriver, Email, EmailUpdate);
+        ActivityHelper.clickOnElementByText(Driver.appiumDriver, Age);
+        ActivityHelper.sendKeysToElementByText(Driver.appiumDriver, Age, AgeUpdate);
+        ActivityHelper.clickElement(Driver.appiumDriver, btnSaveChanges);
     }
 
 
