@@ -30,6 +30,12 @@ public class ReadConfig {
         }
         logo=properties.getProperty("logo");
         executionName=properties.getProperty("executionName");
+
+        deviceName=properties.getProperty("deviceName");
+        platformVersion=properties.getProperty("platformVersion");
+        appPackage=properties.getProperty("appPackage");
+        appActivity=properties.getProperty("appActivity");
+        platformName=properties.getProperty("platformName");
         try {
             inputStream.close();
         } catch (IOException e) {

@@ -1,4 +1,5 @@
 package runner.hook;
+
 import core.Driver;
 import io.appium.java_client.AppiumDriver;
 import io.cucumber.java.After;
@@ -15,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
 public class Hooks {
 
     public static AppiumDriver appiumDriver;
@@ -26,7 +28,24 @@ public class Hooks {
 
         currentScenario = scenario;
 
-        if (scenario.getSourceTagNames().contains("@web")) {
+        if (scenario.getSourceTagNames().contains("@mobile")){
+
+            if(scenario.getSourceTagNames().contains("@androidLocal")){
+                appiumDriver = Driver.startDevice("androidLocal");
+                scenario.attach("Start Scenario: " + scenario.getName(), "text/plain", "Start Scenario");
+            } else if (scenario.getSourceTagNames().contains("@iosLocal")) {
+                appiumDriver = Driver.startDevice("iosLocal");
+                scenario.attach("Start Scenario: " + scenario.getName(), "text/plain", "Start Scenario");
+            } else if (scenario.getSourceTagNames().contains("@androidRemote")) {
+                appiumDriver = Driver.startDevice("androidRemote");
+                scenario.attach("Start Scenario: " + scenario.getName(), "text/plain", "Start Scenario");
+            } else if (scenario.getSourceTagNames().contains("@iosRemote")) {
+                appiumDriver = Driver.startDevice("iosRemote");
+                scenario.attach("Start Scenario: " + scenario.getName(), "text/plain", "Start Scenario");
+            }
+
+
+        } else if (scenario.getSourceTagNames().contains("@web")) {
             System.out.println("Initialize Selenium");
             if (scenario.getSourceTagNames().contains("@firefoxLocal")){
                 webdriver = Driver.startWebDriver("firefoxLocal");
@@ -34,7 +53,11 @@ public class Hooks {
             } else if (scenario.getSourceTagNames().contains("@chromeLocal")) {
                 webdriver = Driver.startWebDriver("chromeLocal");
                 scenario.attach("Start Scenario: " + scenario.getName(), "text/plain", "Start Scenario");
-            } else if (scenario.getSourceTagNames().contains("@edgeLocal")) {
+            } else if (scenario.getSourceTagNames().contains("@chromeLocalS")) {
+                webdriver = Driver.startWebDriver("chromeLocalS");
+                scenario.attach("Start Scenario: " + scenario.getName(), "text/plain", "Start Scenario");
+            }
+            else if (scenario.getSourceTagNames().contains("@edgeLocal")) {
                 webdriver = Driver.startWebDriver("edgeLocal");
                 scenario.attach("Start Scenario: " + scenario.getName(), "text/plain", "Start Scenario");
             } else if (scenario.getSourceTagNames().contains("@chromeRemote")) {
@@ -180,4 +203,6 @@ public class Hooks {
         }
     }
 
-}
+
+
+}//end Hooks

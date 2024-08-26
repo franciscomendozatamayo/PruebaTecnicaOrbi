@@ -28,15 +28,15 @@ public class Driver {
             switch (deviceName) {
 
                 case "androidLocal":
-                    capabilities.setCapability("deviceName", EnvironmentConfig.deviceName);
-                    capabilities.setCapability("platformVersion", EnvironmentConfig.platformVersion);
-                    capabilities.setCapability("appPackage", EnvironmentConfig.appPackage);
-                    capabilities.setCapability("appActivity", EnvironmentConfig.appActivity);
-                    capabilities.setCapability("platformName", EnvironmentConfig.platformName);
-                    capabilities.setCapability("automationName", "UiAutomator2");
-                    capabilities.setCapability("noReset", true);
-                    capabilities.setCapability("fast_reset", true);
-                    appiumDriver = new AndroidDriver(new URL("http://127.0.0.1:4723"), capabilities);
+                    capabilities.setCapability("platformName", "Android");
+                    capabilities.setCapability("appium:platformVersion", "15");
+                    capabilities.setCapability("appium:deviceName", "emulator-5554");
+                    capabilities.setCapability("appium:appPackage", "com.example.test");
+                    capabilities.setCapability("appium:appActivity", "com.example.test.MainActivity");
+                    capabilities.setCapability("appium:automationName", "UiAutomator2");
+                    capabilities.setCapability("appium:noReset", "false");
+                    capabilities.setCapability("appium:fullReset", "false");
+                    appiumDriver = new AndroidDriver(new URL("http://127.0.0.1:4723/"), capabilities);
                     break;
                 case "iosLocal":
                     break;
@@ -67,13 +67,9 @@ public class Driver {
                     webDriver.manage().deleteAllCookies();
                     break;
                 case "chromeLocal":
-                    //System.setProperty("webdriver.chrome.driver", "C:\\Users\\pakig\\Documents\\GitHub\\TransNetworkFarmeworkBDD\\src\\test\\resources\\drivers\\Chrome\\chromedriver.exe");
-                    ChromeOptions options = new ChromeOptions();
-                    //options.addArguments("force-device-scale-factor=0.75");
                     WebDriverManager.chromedriver().setup();
-                    webDriver = new ChromeDriver(options);
+                    webDriver = new ChromeDriver();
                     webDriver.manage().deleteAllCookies();
-
                     break;
                 case "edgeLocal":
                     WebDriverManager.edgedriver().setup();
@@ -81,41 +77,12 @@ public class Driver {
                     webDriver.manage().deleteAllCookies();
                     break;
                 case "chromeRemote":
-                    DesiredCapabilities caps = new DesiredCapabilities();
-                    caps.setCapability("browser", "Chrome");
-                    caps.setCapability("browser_version", "latest");
-                    caps.setCapability("os", "Windows");
-                    caps.setCapability("os_version", "11");
-                    caps.setCapability("resolution", "1850x1148");
-
-                    String username = "serviciosti_IEYbZk";
-                    String accessKey = "d6fPDFngKGyM2zygHEtF";
-                    String browserStackUrl = "https://" + username + ":" + accessKey + "@hub-cloud.browserstack.com/wd/hub";
-
-                    webDriver = new RemoteWebDriver(new URL(browserStackUrl), caps);
                     break;
                 case "firefoxRemote":
                     break;
                 case "edgeRemote":
                     break;
                 case "chromeLocalS":
-                    ChromeOptions optionsOther = new ChromeOptions();
-
-                    // Configura el User-Agent
-                    //optionsOther.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
-
-                    // Configura el proxy si es necesario
-                    Proxy proxy = new Proxy();
-                    proxy.setHttpProxy("your-proxy-ip:port"); // Reemplaza "your-proxy-ip:port" con la dirección de tu proxy
-                    optionsOther.setProxy(proxy);
-
-                    // Configura el modo headless si es necesario
-                    // options.addArguments("--headless");
-
-                    optionsOther.addArguments("force-device-scale-factor=0.75");
-                    WebDriverManager.chromedriver().setup();
-                    WebDriver webDriver = new ChromeDriver(optionsOther);
-                    webDriver.manage().deleteAllCookies();
                     break;
             }
 

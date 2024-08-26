@@ -20,7 +20,7 @@ public class ReportGenerator {
 
     public static void main(String[] args) {
         String ruta = new File("").getAbsolutePath() + "/build/reports/cucumber/";
-        File reportFolder = new File(ruta + "Forza");
+        File reportFolder = new File(ruta + "Orbi");
 
         List<String> jsonList = new ArrayList<>();
         jsonList.add(ruta + "report.json");
@@ -30,10 +30,10 @@ public class ReportGenerator {
         reportBuilder.generateReports();
 
         try {
-            modifyHtmlToAddLogo(ruta + "Forza/cucumber-html-reports/overview-features.html", "src/test/resources/testdata/logo/"+ EnvironmentConfig.Logo);
-            modifyHtmlToAddLogo(ruta + "Forza/cucumber-html-reports/overview-failures.html", "src/test/resources/testdata/logo/"+ EnvironmentConfig.Logo);
-            modifyHtmlToAddLogo(ruta + "Forza/cucumber-html-reports/overview-steps.html", "src/test/resources/testdata/logo/"+ EnvironmentConfig.Logo);
-            modifyHtmlToAddLogo(ruta + "Forza/cucumber-html-reports/overview-tags.html", "src/test/resources/testdata/logo/"+ EnvironmentConfig.Logo);
+            modifyHtmlToAddLogo(ruta + "Orbi/cucumber-html-reports/overview-features.html", "src/test/resources/testdata/logo/"+ EnvironmentConfig.Logo);
+            modifyHtmlToAddLogo(ruta + "Orbi/cucumber-html-reports/overview-failures.html", "src/test/resources/testdata/logo/"+ EnvironmentConfig.Logo);
+            modifyHtmlToAddLogo(ruta + "Orbi/cucumber-html-reports/overview-steps.html", "src/test/resources/testdata/logo/"+ EnvironmentConfig.Logo);
+            modifyHtmlToAddLogo(ruta + "Orbi/cucumber-html-reports/overview-tags.html", "src/test/resources/testdata/logo/"+ EnvironmentConfig.Logo);
         } catch (IOException e) {
             e.printStackTrace();
         }
